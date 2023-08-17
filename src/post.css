@@ -1,0 +1,25 @@
+.post{
+    background-color: white;
+    padding: 15px;
+    margin-top: 10px;
+}
+.post-header{
+    display: flex;
+    
+}
+.post-info{
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 300;
+}
+.post-info > h2{
+    font-size: 15px;
+    font-weight: 600;
+}
+.post-body{
+    overflow-wrap:break-word;
+    margin-top: 10px;
+}
+.post-buttons{
+    display: flex;
+}

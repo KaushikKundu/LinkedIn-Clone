@@ -4,7 +4,7 @@ import "./Sidebar.css";
 import background from "../src/assets/background.jpg";
 //import profileImage from "../src/assets/profile.png"
 
-const Sidebar = (profileImage) => {
+const Sidebar = () => {
     const recentItem = (topic) => (
         <div className="sidebar-recentItem">
             <span className="sidebar-hash">#</span>
