@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import "./feed.css";
 import InputOptions from "./InputOptions";
@@ -9,20 +9,42 @@ import {
   Subscriptions,
 } from "@mui/icons-material";
 import Post from "./Post";
+import { db } from "./firebase";
 
 const Feed = () => {
-    const [posts, setPosts] = useState([]);
-    const sendPost = (e) => {
-        e.preventDefault();
+  const [posts, setPosts] = useState([]);
+  const [input, setInput] = useState("");
+  const sendPost = (e) => {
+    e.preventDefault();
 
-    }
+    db.collection('posts').add({
+      name: 'Kaushik kundu',
+      description:"demo test",
+      message:input,
+      photoUrl: '',
+      timestamp: firebase.getFirestore.FieldValue.serverTimeStamp()
+  
+    });
+  };
+  useEffect(() => {
+    db.collection("posts").onSnapshot((snapshot) =>
+      setPosts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+  }, []);
+  
+
   return (
     <div className="feed">
       <div className="feed-inputContainer">
         <div className="feed-input">
           <CreateIcon />
           <form>
-            <input type="text" name="" id="" placeholder="Start a post" />
+            <input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Start a post" />
             <button onClick={sendPost} type="submit" value="">
               Send
             </button>
@@ -39,16 +61,15 @@ const Feed = () => {
           />
         </div>
       </div>
-      {
-        posts.map((post) => {
-            <Post />
-        })
-      }
-      <Post
-        name="Kaushik kundu"
-        description="demo post"
-        message="this worked!"
+     {posts.map(({id, data:{name, description, message, photoUrl }}) => (
+      <Post 
+        key={id}
+        name={name}
+        description={description}
+        message= {message}
+        photoUrl={photoUrl}
       />
+     ))}
     </div>
   );
 };
