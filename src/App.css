@@ -12,4 +12,6 @@
 .app-body{
   display: flex;
   margin-top: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
 }

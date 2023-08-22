@@ -3,18 +3,20 @@ import React from 'react';
 import './post.css'
 import InputOptions from './InputOptions';
 import { ChatOutlined, SendOutlined, ShareOutlined, ThumbUpAltOutlined } from '@mui/icons-material';
-const Post = () => {
+
+const Post = ({name, description, message}) => {
+    const messageString = JSON.stringify(message);
     return (
         <div className="post">
             <div className="post-header">
                 <Avatar />
                 <div className="post-info">
-                    <h2>Kaushik Kundu</h2>
-                    <p>Description</p>
+                    <h2>{name}</h2>
+                    <p>{description}</p>
                 </div>
             </div>
             <div className="post-body">
-                <p>Hello</p>
+                <p>{messageString} </p>
             </div>
             <div className="post-buttons">
                 <InputOptions Icon={ThumbUpAltOutlined} title="Like" color="gray"/>

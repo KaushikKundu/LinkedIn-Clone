@@ -22,4 +22,9 @@
 }
 .post-buttons{
     display: flex;
+    justify-content: space-between;
+
+}
+.inputOption:hover{
+    color: black;
 }
